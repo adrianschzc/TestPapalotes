@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TestPapalotes.Models;
 
 namespace TestPapalotes.Data
@@ -8,7 +9,9 @@ namespace TestPapalotes.Data
     {
         public static void Seed(ControlEscolarContext db)
         {
-            db.Database.EnsureCreated();
+            // Aplica las migraciones pendientes: crea las tablas dentro de la
+            // base de datos (que en hosting ya existe, aunque esté vacía).
+            db.Database.Migrate();
 
             if (db.Materias.Any()) return; // Ya sembrado.
 
