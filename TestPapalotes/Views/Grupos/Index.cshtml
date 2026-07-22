@@ -1,0 +1,22 @@
+@model IEnumerable<Grupo>
+@{ ViewData["Title"] = "Grupos"; }
+
+<h2>Grupos</h2>
+<p><a class="btn btn-success" asp-action="Create">+ Nuevo grupo</a></p>
+
+<table class="table table-striped">
+    <thead><tr><th>Clave</th><th>Nombre</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var g in Model)
+        {
+            <tr>
+                <td>@g.Clave</td>
+                <td>@g.Nombre</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@g.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@g.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

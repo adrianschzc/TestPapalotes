@@ -1,0 +1,14 @@
+@model Asignacion
+@{ ViewData["Title"] = "Eliminar asignación"; }
+
+<h2>¿Eliminar esta asignación?</h2>
+<dl class="row col-md-6">
+    <dt class="col-sm-4">Materia</dt><dd class="col-sm-8">@Model.Materia?.Nombre</dd>
+    <dt class="col-sm-4">Grupo</dt><dd class="col-sm-8">@Model.Grupo?.Clave</dd>
+    <dt class="col-sm-4">Profesor</dt><dd class="col-sm-8">@Model.Profesor?.Nombre</dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,14 @@
+@model Asignacion
+@{ ViewData["Title"] = "Editar asignación"; }
+
+<h2>Editar asignación</h2>
+<form asp-action="Edit" class="col-md-6">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3"><label asp-for="MateriaId" class="form-label"></label><select asp-for="MateriaId" asp-items="ViewBag.Materias" class="form-select"></select></div>
+    <div class="mb-3"><label asp-for="GrupoId" class="form-label"></label><select asp-for="GrupoId" asp-items="ViewBag.Grupos" class="form-select"></select></div>
+    <div class="mb-3"><label asp-for="ProfesorId" class="form-label"></label><select asp-for="ProfesorId" asp-items="ViewBag.Profesores" class="form-select"></select></div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

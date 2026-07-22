@@ -1,0 +1,23 @@
+@model IEnumerable<Profesor>
+@{ ViewData["Title"] = "Profesores"; }
+
+<h2>Profesores</h2>
+<p><a class="btn btn-success" asp-action="Create">+ Nuevo profesor</a></p>
+
+<table class="table table-striped">
+    <thead><tr><th>No. empleado</th><th>Nombre</th><th>Correo</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.NumEmpleado</td>
+                <td>@p.Nombre</td>
+                <td>@p.Correo</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@p.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@p.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

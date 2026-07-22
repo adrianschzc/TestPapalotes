@@ -1,0 +1,59 @@
+@model Asignacion
+@{
+    ViewData["Title"] = "Alumnos de la materia";
+    var alumnos = ViewBag.Alumnos as List<Alumno> ?? new List<Alumno>();
+    var inscritos = ViewBag.Inscritos as List<int> ?? new List<int>();
+}
+
+<h2>Alumnos de la materia</h2>
+<p class="lead">
+    <strong>@Model.Materia?.Nombre</strong> — Grupo @Model.Grupo?.Clave — Prof. @Model.Profesor?.Nombre
+</p>
+<p class="text-muted">Marca qué alumnos del grupo cursan esta materia. Solo los alumnos inscritos aparecerán al capturar y consultar calificaciones.</p>
+
+<table class="table table-striped col-md-8">
+    <thead><tr><th>Boleta</th><th>Nombre</th><th>Estado</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var a in alumnos)
+        {
+            var estaInscrito = inscritos.Contains(a.Id);
+            <tr>
+                <td>@a.Boleta</td>
+                <td>@a.Nombre</td>
+                <td>
+                    @if (estaInscrito)
+                    {
+                        <span class="badge bg-success">Inscrito</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">No inscrito</span>
+                    }
+                </td>
+                <td>
+                    @if (estaInscrito)
+                    {
+                        <form asp-action="Desinscribir" method="post" class="d-inline">
+                            <input type="hidden" name="asignacionId" value="@Model.Id" />
+                            <input type="hidden" name="alumnoId" value="@a.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Quitar</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="Inscribir" method="post" class="d-inline">
+                            <input type="hidden" name="asignacionId" value="@Model.Id" />
+                            <input type="hidden" name="alumnoId" value="@a.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-success">Agregar</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+        @if (alumnos.Count == 0)
+        {
+            <tr><td colspan="4" class="text-muted">No hay alumnos registrados en este grupo.</td></tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

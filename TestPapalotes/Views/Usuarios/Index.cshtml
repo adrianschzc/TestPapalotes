@@ -1,0 +1,25 @@
+@model IEnumerable<Usuario>
+@{ ViewData["Title"] = "Roles de usuarios"; }
+
+<h2>Asignación de roles</h2>
+<p class="text-muted">El administrador asigna a cada usuario registrado un rol (Administrador, Profesor o Alumno) y, en su caso, el grupo al que pertenece.</p>
+<p><a class="btn btn-success" asp-action="Create">+ Nuevo usuario</a></p>
+
+<table class="table table-striped">
+    <thead><tr><th>Usuario</th><th>Nombre completo</th><th>Rol</th><th>Grupo</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.NombreUsuario</td>
+                <td>@u.NombreCompleto</td>
+                <td><span class="badge bg-secondary">@u.Rol</span></td>
+                <td>@(u.Grupo?.Clave ?? "-")</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@u.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@u.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

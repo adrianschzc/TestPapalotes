@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-5">Sistema de Control Escolar</h1>
+    <p class="lead text-muted">Universidad — administración de materias, grupos, profesores, alumnos y calificaciones.</p>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Panel de administración</h5>
+                <p class="card-text text-muted">Asignación de roles, mantenimiento de catálogos y asignación de materias.</p>
+                <a class="btn btn-primary" asp-controller="Usuarios" asp-action="Index">Entrar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Panel del docente</h5>
+                <p class="card-text text-muted">Registro de calificaciones de los alumnos por número de boleta.</p>
+                <a class="btn btn-primary" asp-controller="Docente" asp-action="Index">Entrar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Panel del alumno</h5>
+                <p class="card-text text-muted">Consulta de calificaciones por número de boleta.</p>
+                <a class="btn btn-primary" asp-controller="AlumnoPanel" asp-action="Index">Entrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info mt-4">
+    <strong>Datos de prueba precargados:</strong> boletas <code>2023630001</code> (Ana García) y
+    <code>2023630002</code> (Luis Ramírez), grupo <code>3CV1</code>.
+</div>

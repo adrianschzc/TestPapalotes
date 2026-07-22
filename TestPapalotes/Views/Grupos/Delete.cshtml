@@ -1,0 +1,13 @@
+@model Grupo
+@{ ViewData["Title"] = "Eliminar grupo"; }
+
+<h2>¿Eliminar este grupo?</h2>
+<dl class="row col-md-6">
+    <dt class="col-sm-4">Clave</dt><dd class="col-sm-8">@Model.Clave</dd>
+    <dt class="col-sm-4">Nombre</dt><dd class="col-sm-8">@Model.Nombre</dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,14 @@
+@model Profesor
+@{ ViewData["Title"] = "Eliminar profesor"; }
+
+<h2>¿Eliminar este profesor?</h2>
+<dl class="row col-md-6">
+    <dt class="col-sm-4">No. empleado</dt><dd class="col-sm-8">@Model.NumEmpleado</dd>
+    <dt class="col-sm-4">Nombre</dt><dd class="col-sm-8">@Model.Nombre</dd>
+    <dt class="col-sm-4">Correo</dt><dd class="col-sm-8">@Model.Correo</dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

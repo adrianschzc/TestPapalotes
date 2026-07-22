@@ -1,0 +1,59 @@
+@model BoletaCalificacionesVM
+@{ ViewData["Title"] = "Panel del alumno"; }
+
+<h2>Consulta de calificaciones</h2>
+<p class="text-muted">Ingrese su número de boleta para consultar las calificaciones de las materias de su grupo.</p>
+
+<form asp-action="Consultar" method="post" class="row g-2 col-md-6 mb-3">
+    <div class="col-8">
+        <input name="boleta" value="@Model.Boleta" class="form-control" placeholder="Número de boleta (ej. 2023630001)" />
+    </div>
+    <div class="col-4">
+        <button type="submit" class="btn btn-primary w-100">Consultar</button>
+    </div>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-warning">@ViewBag.Error</div>
+}
+
+@if (Model.AlumnoId > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <strong>@Model.AlumnoNombre</strong> — Boleta @Model.Boleta — Grupo @Model.Grupo
+        </div>
+        <div class="card-body">
+            @if (Model.Filas.Count == 0)
+            {
+                <p class="text-muted">No hay materias registradas en su grupo.</p>
+            }
+            else
+            {
+                <table class="table table-striped">
+                    <thead><tr><th>Materia</th><th>Profesor</th><th>Calificación</th></tr></thead>
+                    <tbody>
+                        @foreach (var f in Model.Filas)
+                        {
+                            <tr>
+                                <td>@f.Materia</td>
+                                <td>@f.Profesor</td>
+                                <td>
+                                    @if (f.Valor.HasValue)
+                                    {
+                                        <span class="badge @(f.Valor >= 60 ? "bg-success" : "bg-danger")">@f.Valor</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sin calificar</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+}
